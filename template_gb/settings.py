@@ -28,12 +28,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+#GBELLAK: needed when setting up django.contrib.sites in INSTALLED APPS:
 SITE_ID = 1
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+#GBELLAK:  Added 2 lines to setup flatpages (contrib.sites and contrib.flatpages)    
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.admindocs',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+# new app to hold syncdb command (workaround to avoid errors)
     'myapp',
 ]
 
@@ -61,6 +64,7 @@ ROOT_URLCONF = 'template_gb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#GBELLAK:  template DIRS needs to be defined
         'DIRS': [os.path.join(BASE_DIR, './template_gb/templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
